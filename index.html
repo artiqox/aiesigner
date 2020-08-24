@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AIESigner</title>
+  </head>
+<body>
+  <style>
+    .input-group {
+      margin-bottom: 10px;
+    }
+
+    #qrcode {
+      padding-left: 10px;
+    }
+
+  </style>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand">AIESigner Offline (2020-08-22 v0.1)</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <ul class="nav nav-tabs" id="myTabs">
+      <li role="presentation" class="active"><a class="menu" href="#signTab" aria-controls="sign" role="tab" data-toggle="tab" >Sign Transaction</a></li>
+      <li role="presentation" ><a class="menu" href="#accountTab" aria-controls="account" role="tab" data-toggle="tab">New Account</a></li>
+      <li role="presentation" ><a class="menu" href="#aboutTab" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
+    </ul>
+
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="signTab"> 
+        <h3>Sign Transaction</h3>
+
+        <div class="alert alert-danger" role="alert">If you just downloaded this client, first of all check <a href="https://en.wikipedia.org/wiki/SHA-2" target=_blank>SHA256</a> for index.min.html. It <strong>must</strong> be the same as on <a href="https://www.artiqox.com/aiesigner" target=_blank>aiesigner</a> page, or in Alias</a> </div>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="nbxtridge-passphrase-help">Secret phrase:</span>
+          <input type="text" class="form-control" aria-describedby="aiesigner-passphrase-help" id="aiesigner-passphrase" >
+        </div>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="nbxtridge-unsigned-help">Unsigned Transaction:</span>
+          <textarea class="form-control" rows="5" cols="90" aria-describedby="aiesigner-unsigned-help" id="unsigned_transaction"></textarea>
+        </div>
+
+        <div class="input-group">
+            <button type="button" class="btn btn-warning" id="check">Check transaction before signing</button>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon" id="review_1"></span>
+              <input type="text" class="form-control" aria-describedby="value-help-1" id="review_val1" readonly>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon" id="review_2"></span>
+              <input type="text" class="form-control" aria-describedby="value-help-2" id="review_val2" readonly>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon" id="review_3"></span>
+              <input type="text" class="form-control" aria-describedby="value-help-3" id="review_val3" readonly>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon" id="review_4"></span>
+              <input type="text" class="form-control" aria-describedby="value-help-4" id="review_val4" readonly>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon" id="review_5"></span>
+              <input type="text" class="form-control" aria-describedby="value-help-5" id="review_val5" readonly>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon" id="review_6"></span>
+              <input type="text" class="form-control" aria-describedby="value-help-6" id="review_val6" readonly>
+            </div>
+          </div>
+
+          <div class="col-xs-12">
+            <div class="input-group">
+              <span class="input-group-addon" id="review_7"></span>
+              <input type="text" class="form-control" aria-describedby="value-help-5" id="review_val7" readonly>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="input-group">
+            <button type="button" class="btn btn-primary" id="sign">Sign</button>
+        </div>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="nbxtridge-signed-help">Signed Transaction:</span>
+          <textarea class="form-control" rows="15" aria-describedby="aiesigner-signed-help" id="signed_transaction" readonly> </textarea>
+          <span class="input-group-btn"><div id="qrcode"></div></span>
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="accountTab"> 
+        <h3>Create Account</h3>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="nbxtridge-newpassphrase-help">Your Secret Phrase:</span>
+          <input type="text" class="form-control" aria-describedby="aiesigner-newpassphrase-help" id="aiesigner-newpassphrase">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" id="generateNewPassphrase">Generate</button>
+          </span>
+        </div>
+
+
+        <div class="input-group">
+          <span class="input-group-addon" id="nbxtridge-publickey-help">Your Public Key:</span>
+          <input type="text" class="form-control" aria-describedby="aiesigner-publickey-help" id="publickey" readonly>
+        </div>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="nbxtridge-account-help">Your Account:</span>
+          <input type="text" class="form-control" aria-describedby="aiesigner-account-help" id="account" readonly>
+        </div>
+
+        <div class="alert alert-danger" role="alert">Your passphrase <strong>IS</strong> your account, your AIE, messages, assets, MS coins, store, everything! We recommend you to use KeePass2 or similar software to store your passphrase(s) on your PC. <strong>Do not use online storage. It is not safe!</strong></div>
+
+        <div class="input-group">
+          <span class="input-group-btn"><div id="qrcode2"></div></span>
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="aboutTab"> 
+        <h1>About</h1>
+
+<p><strong>AIESigner version 0.1</strong></p>
+<ol>
+<li>Credits</li>
+<li>License</li>
+<li>What does this .html do?</li>
+<li>FAQ</li>
+<li>Terms and Conditions</li>
+</ol>
+<h2>Credits</h2>
+<p>Lead developer: inetics</p>
+<p><em>A special thanks to scor2k. His code was ported to AIE chain as is. &nbsp;</em></p>
+<p>Please support him for his work:</p>
+<p>NXT and Nxt assets: <strong>NXT-8G69-44WM-5LWM-F9XH4</strong></p>
+<p>BTC account: <strong>13j6T3owGZqibTych6TXBE3hg1RwWuMevy</strong></p>
+<h2>License</h2>
+<p>GPLv2 or later</p>
+<p>License URI: <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">http://www.gnu.org/licenses/gpl-2.0.html</a></p>
+<h2>What does this HTML page do?</h2>
+<p>AIESigner can be used to sign any transaction on the AIE Blockchain securely.</p>
+<p>When you use AIESigner, your passphrase is NEVER exposed to anyone on the internet.</p>
+<p>This allows for the:</p>
+<p>- OFFLINE creation of cold storage accounts</p>
+<p>- OFFLINE signing of AIE transactions from that offline account you just created (send AIE, encrypted messages, buy/sell on the AE, etc. etc. Essentially, any and all transactions on the ArtiqoxEnergy Platform are 100% safe, as they are signed OFFLINE).</p>
+<p>You can run AIESigner from your pc, or tablet, or smartphone, without any connection to the internet.</p>
+<h2>FAQ</h2>
+<p>Q: How do you create a transaction to be signed with AIESigner?</p>
+<p>A: Use the wallet (local or aie.artiqox.com) login with your account and start creating the transaction ("Send AIE" button on top of the screen for AIE or in "My Assets" press on "Transfer" for AIQ), fill all the required parameters (recepient, amount, message, ...) then press on "Advanced" at the bottom of transaction window and check two checkbox: "Do Not Broadcast" and "Do Not Sign", press on "Submit" button and store "Unsinged Transaction Bytes".</p>
+<p>Q: How do you sign a transaction with AIESigner?</p>
+<p>A: Place the index.min.html file on secure PC (ideally no internet access) and then use your favourite browser to open it. Fill "Secret phrase" with secret phrase for your account, paste the output from previous step into "Unsigned Transaction" field and then press "Check transaction before signing" - compare the transaction data with your initial inputs from previous step, if all is fine press on "Sign". Store the "Signed Transaction" value.</p>
+<p>Q: How do you broadcast a signed transaction</p>
+<p>A: Use the wallet (local or aie.artiqox.com) login with your account, press on clogwheel (top right corner) and select "Transaction Operations". Go to "Broadcast Transaction", paste the output from previous step into "Transaction Bytes" and press on "Broadcast".</p>
+<h2>Terms and Conditions</h2>
+<p>AIESigner is an html program which can be used to sign AIE transactions.</p>
+<p>AIESigner is a downloadable html page which can assign AIE accounts and sign AIE transactions locally and offline on the User&rsquo;s PC so the User can submit transactions securely to the AIE Blockchain without ever exposing his passphrase on the internet.</p>
+<p>An account you create with AIESigner is an account which exists on the ArtiqoxEnergy blockchain. Your AIE account is yours, not ours. Artiqox cannot be held responsible if you lose your AIE passphrase or if a 3rd party gets a hold of it, or for any other consequence of you having lost it. YOUR AIE PASSPHRASE IS THE VERY KEY TO YOUR AIE ACCOUNT. KEEP IT SAFE! We do NOT have access to your passphrase, so we CANNOT keep backups of your passphrase for you.</p>
+<p>You are responsible for all activity on your account. You, and only you, are responsible for keeping a backup of your passphrase. You also agree not to disclose it to any third party.</p>
+<p>Users who download AIESigner must make sure that the downloaded file checks positive against the sha256 provided in the AIE alias: AIESignerSHA256.</p>
+<p>It is the sole responsibility of each user to use AIESigner only when the user is disconnected from the Internet. It is also the user&rsquo;s sole responsibility to check that the UNSIGNED transaction bytes which the user pastes into AIESigner results in the exact transaction which the user wants to submit, before the user submits the SIGNED transaction provided by AIESigner in an online environment.</p>
+<p>Artiqox developers are not responsible for price changes to AIE or any other cryptocurrency or asset which the user may or may not use AIESigner to invest in. Neither are we responsible for the actions of the asset issuer(s) or other AIE asset holders.</p>
+<p>www.artiqox.com and the website owner disclaims to the fullest extent permitted by law, all liability for any loss or damage including consequential or indirect loss or damage caused as a result of using the AIESigner, the ArtiqoxEnergy blockchain, the www.artiqox.com website, or any information, files, or data published on or referenced from Artiqox.</p>
+<p>AIE and cryptocurrency in general is a decentralized and groundbreaking piece of technology and different laws may apply in different countries. It is the sole responsibility of AIESigner users to be aware of and comply with all applicable laws.&nbsp;</p>
+<p>If you download AIESigner from a website other than https://www.artiqox.com/aiesigner or https://github.com/artiqox/aiesigner, the AIESigner developers and artiqox.com CANNOT guarantee that a 3rd party has not made changes to the code. It is also possible that you may be hacked. Malicious participants want your money and we do not have the responsibility to protect you against them. Please follow our guidelines to avoid exposing yourself to these situations and be warned. When you download AIESigner, check the file against the sha256 provided on https://www.artiqox.com/aiesigner and in the AIE alias: AIESignerSHA256, before you use it. It is the only way you can make sure that the file has not been tampered. If the file does not check positive against the sha256, please alert us, the artqox.com site and its owner(s) via the functions of the site, and by the email addresses provided below.</p>
+<p>admin@artiqox.com</p>
+
+      </div>
+
+
+    </div> 
+
+  </div>
+  
+	<script src="js/jquery-2.2.4.min.js"></script>
+	<script src="js/util/converters.js" type="text/javascript"></script>
+	<script src="js/util/nxtaddress.js" type="text/javascript"></script>
+	<script src="js/crypto/passphrasegenerator.js"></script>
+	<script src="js/crypto/jssha256.js" type="text/javascript"></script>
+	<script src="js/crypto/jsbn.js" type="text/javascript"></script>
+	<script src="js/crypto/curve25519.js" type="text/javascript"></script>
+	<script src="js/typechecker.js" type="text/javascript"></script>
+	<script src="js/tab.js" type="text/javascript"></script> 
+	<script src="js/qrcode.min.js" type="text/javascript"></script> 
+	<script src="js/additional.js" type="text/javascript"></script>
+	
+	
+</body></html>
